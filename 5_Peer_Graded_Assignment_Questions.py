@@ -74,21 +74,17 @@ def compute_data_choice_2(df):
 app.layout = html.Div(children=[ 
                                 # TASK1: Add title to the dashboard
                                 # Enter your code below. Make sure you have correct formatting.
-    html.H1('US Domestic Airline Flights Performance',style={'textAlign':'center','color':'#503D36','font-size':24}
+html.H1('US Domestic Airline Flights Performance', style={'textAlign':'center','color':'#503D36','font-size':24}),
                                 # REVIEW2: Dropdown creation
                                 # Create an outer division 
                                 html.Div([
                                     # Add an division
                                     html.Div([
                                         # Create an division for adding dropdown helper text for report type
-                                        html.Div(
-                                            [
-                                            html.H2('Report Type:', style={'margin-right': '2em'}),
-                                            ]
-                                        ),
+                                        html.Div( [ html.H2('Report Type:', style={'margin-right': '2em'})] ),
                                         # TASK2: Add a dropdown
                                         # Enter your code below. Make sure you have correct formatting.
-                                       dcc.Dropdown(id='input-type',options=[
+                                        dcc.Dropdown(id='input-type',options=[
                                             {'label': 'Yearly Airline Performance Report', 'value': 'OPT1'},
                                             {'label': 'Yearly Airline Delay Report', 'value': 'OPT2'}],
                                             placeholder='Select a report type',
@@ -124,7 +120,7 @@ app.layout = html.Div(children=[
                                 
                                 # TASK3: Add a division with two empty divisions inside. See above disvision for example.
                                 # Enter your code below. Make sure you have correct formatting.
-                               html.Div([
+                                html.Div([
                                html.Div([ ], id='plot4'),
                                html.Div([ ], id='plot5'),
                                ],
@@ -161,10 +157,10 @@ def get_graph(chart, year, children1, children2, c3, c4, c5):
             
             # TASK5: Average flight time by reporting airline
             # Enter your code below. Make sure you have correct formatting.
-             line_fig = px.line(line_data, x='Month', y='AirTime',
+            line_fig = px.line(line_data, x='Month', y='AirTime',
              color='Reporting_Airline', 
               title='Average monthly flight time (minutes) by airline')
-            
+           
             # Percentage of diverted airport landings per reporting airline
             pie_fig = px.pie(div_data, values='Flights', names='Reporting_Airline', title='% of flights by reporting airline')
             
@@ -183,10 +179,11 @@ def get_graph(chart, year, children1, children2, c3, c4, c5):
             # TASK6: Number of flights flying to each state from each reporting airline
             # Enter your code below. Make sure you have correct formatting.
             tree_fig=px.treemap(tree_data, path=['DestState', 'Reporting_Airline'], 
-             values='Flights',
+             values='Flights',
              color='Flights',
              color_continuous_scale='RdBu',
-              title='Flight count by airline to destination state')              
+              title='Flight count by airline to destination state') 
+            
             
             # REVIEW6: Return dcc.Graph component to the empty division
             return [dcc.Graph(figure=tree_fig), 
